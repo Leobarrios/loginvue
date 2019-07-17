@@ -1,15 +1,15 @@
 <template>
     <div>
-        <form>
+        <form v-on:submit.prevent="login">
   <div class="form-group">
     <label for="exampleInputEmail1">Ingrese Email</label>
-    <input v-model="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <input v-model="emailIng" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Contraseña</label>
-    <input v-model="pass" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    <input v-model="passIng" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
   </div>
-  <button v-on:click="login" type="submit" class="btn btn-primary">Entrar</button>
+  <button type="submit" class="btn btn-primary">Entrar</button>
 </form>
     </div>
 </template>
@@ -19,15 +19,14 @@ export default {
     name: 'Login',
     data() {
         return{
-            email:'',
-            pass:'',
+            emailIng:'',
+            passIng:'',
             usuarios:[],
         }
     },
 
 mounted() {
-    this.loadUsers(),
-    this.login()
+    this.loadUsers()
 
 },
 methods: {
@@ -36,7 +35,8 @@ methods: {
         this.usuarios = await data.json()
     },
     login(){
-       if (this.usuarios.email == this.email && this.usuarios.pass == this.pass) {
+        console.log(this.usuarios[0].email)
+       if (this.usuarios.email === this.emailIng && this.usuarios.pass === this.passIng) {
            console.log("todo piola amigo")
        }
        else{
