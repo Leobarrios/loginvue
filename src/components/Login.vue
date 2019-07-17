@@ -34,14 +34,21 @@ methods: {
         const data = await fetch('./users.json')
         this.usuarios = await data.json()
     },
-    login(){
-        console.log(this.usuarios[0].email)
-       if (this.usuarios.email === this.emailIng && this.usuarios.pass === this.passIng) {
-           console.log("todo piola amigo")
-       }
-       else{
-           console.log("nada piola amigo")
-       } 
+    login()
+    {
+        for (let i = 0; i < this.usuarios.length; i++) 
+        {
+            if (this.usuarios[i].email === this.emailIng && this.usuarios[i].pass === this.passIng) 
+            {
+                window.alert("Bienvenido " + this.usuarios[i].nombre)
+            }
+            else
+            {
+                window.alert("Datos Incorrectos")
+            } 
+        
+        }
+       
     },
   }
 }
